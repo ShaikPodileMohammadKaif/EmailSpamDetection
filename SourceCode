@@ -1,0 +1,32 @@
+import numpy as np
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+df = pd.read_csv("C:/Users/shaik/Desktop/spam.csv", encoding = 'ISO-8859-1')
+df.head()
+df.tail()
+df.shape
+df.size
+df.info()
+df.describe()
+df=df.rename(columns={'v1':'Target','v2':'Message'})
+df.isnull().sum()
+df.duplicated().sum()
+df.drop_duplicates(keep='first',inplace=True)
+df.duplicated().sum()
+df.size
+from sklearn.preprocessing import LabelEncoder
+encoder=LabelEncoder()
+df['Target']=encoder.fit_transform(df['Target'])
+df['Target']
+df.head()
+df.isna().any()
+data = {'Target': ['ham', 'spam', 'ham', 'ham', 'spam']}
+df = pd.DataFrame(data)
+counts = df['Target'].value_counts()
+labels = ['ham', 'spam']
+plt.pie(counts, labels=labels, autopct='%0.2f%%')
+plt.title('Distribution of Target (ham vs spam)')
+plt.show()
+x=df['Message']
+y=df['Target']
